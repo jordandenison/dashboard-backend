@@ -1,6 +1,6 @@
 {
   "name": "dashboard-backend",
-  "description": "Dashboard backend based on nodejs and featherjs.",
+  "description": "Dashboard backend based on Node.js and Feathers.js.",
   "license": "MIT",
   "version": "0.0.1",
   "homepage": "",
