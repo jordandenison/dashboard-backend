@@ -1,0 +1,33 @@
+{
+  "host": "localhost",
+  "port": 3001,
+  "public": "../public/",
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "authentication": {
+    "secret": "0fe1cc7f2303b8a637624d4b6393bac47fdb01b0f0894e061caaa9935e5e7de89927893e2333f3cdde0e889302e8b49230f9d82a8480c05a6c1fe96a2e15728cf50e1893c7806906206b264b09d457f5d00ccc7897d39e7174e479e6320148443b3d69b3e2c21e3aba33ca6d709a1d1fd9a05b6df2a0ada3aba1cdb95f844d6e94321951bccd99824b255350cfdc76e1a78e57fce3d28b4be1e4c7c5cbc25e49f5223d7f952eb74486b833cbb29eedebb1106076132705245bacb5f02a95846e5669e3072a08b5874d296d0c5e64336edc218c96fe36c5a3f270c33ff17a86cc12c61ebde30e00b7f0c757df0e15cf0acf71896ee942041e02cabaaed1c60aa0",
+    "strategies": [
+      "jwt",
+      "local"
+    ],
+    "path": "/authentication",
+    "service": "users",
+    "jwt": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://dashbaord-backend.herokuapp.com/",
+      "subject": "anonymous",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "365d"
+    },
+    "local": {
+      "entity": "user",
+      "usernameField": "email",
+      "passwordField": "password"
+    }
+  }
+}

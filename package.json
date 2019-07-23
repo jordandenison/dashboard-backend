@@ -1,0 +1,68 @@
+{
+  "name": "dashboard-backend",
+  "description": "Dashboard backend based on nodejs and featherjs.",
+  "license": "MIT",
+  "version": "0.0.1",
+  "homepage": "",
+  "main": "src",
+  "author": {
+    "name": "Jordan Denison",
+    "email": "jordan@denisonweb.com"
+  },
+  "directories": {
+    "lib": "src",
+    "test": "test/",
+    "config": "config/"
+  },
+  "engines": {
+    "node": "^10.0.0",
+    "yarn": ">= 0.18.0"
+  },
+  "scripts": {
+    "create-test-db": "node scripts/create-test-db.js",
+    "dev": "yarn run migrate && nodemon src/",
+    "lint": "standard --fix",
+    "migrate": "sequelize db:migrate --url $DB_URI",
+    "start": "yarn run migrate && node src/",
+    "test": "yarn run lint && yarn run test-cleanup && yarn run create-test-db && sequelize db:migrate --url $TEST_DB_URI && NODE_ENV=test nyc ava 'test/**/*.test.js' 'src/**/*.test.js' --verbose && yarn run test-cleanup",
+    "test-cleanup": "node scripts/test-cleanup.js",
+    "test-current": "yarn run lint && NODE_ENV=test nyc ava 'src/**/*.current.test.js' --verbose",
+    "test-unit": "yarn run lint && NODE_ENV=test nyc ava 'src/**/*.test.js' --verbose"
+  },
+  "dependencies": {
+    "@feathersjs/authentication": "^2.1.13",
+    "@feathersjs/authentication-jwt": "^2.0.7",
+    "@feathersjs/authentication-local": "^1.2.7",
+    "@feathersjs/configuration": "^2.0.4",
+    "@feathersjs/errors": "^3.3.4",
+    "@feathersjs/express": "^1.2.7",
+    "@feathersjs/feathers": "^3.2.3",
+    "@feathersjs/socketio": "^3.2.7",
+    "app-module-path": "^2.2.0",
+    "bluebird": "^3.5.4",
+    "compression": "^1.7.3",
+    "cors": "^2.8.5",
+    "feathers-authentication-hooks": "^0.3.1",
+    "feathers-hooks-common": "^4.20.7",
+    "feathers-memory": "^3.0.0",
+    "feathers-sequelize": "^5.1.3",
+    "helmet": "^3.15.0",
+    "pg": "^7.10.0",
+    "redis": "^2.8.0",
+    "sequelize": "^5.8.5",
+    "serve-favicon": "^2.5.0",
+    "socket.io-redis": "^5.2.0",
+    "uuid": "^3.3.2",
+    "winston": "^3.0.0"
+  },
+  "devDependencies": {
+    "ava": "^1.4.1",
+    "faker": "^4.1.0",
+    "nodemon": "^1.18.7",
+    "nyc": "^14.1.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "standard": "^12.0.1",
+    "supertest": "^4.0.2"
+  }
+}
