@@ -12,7 +12,7 @@ RUN apk --no-cache add ca-certificates wget git python alpine-sdk libusb-dev yar
   && cd /cache \
   && yarn config set cache-folder /usr/local/share/.cache/yarn \
   && yarn \
-  && yarn global add forever @feathersjs/cli sequelize-cli \
+  && yarn global add forever @feathersjs/cli \
   && cd /var/www && ln -s /cache/node_modules node_modules \
   && tar czf /.yarn-cache.tgz /usr/local/share/.cache/yarn
 
