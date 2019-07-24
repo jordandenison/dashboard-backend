@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: true }))
 app.configure(express.rest())
 
 app.configure(socketio(io => {
-  io.adapter(redisAdapter({ host: 'redis', port: 6379 }))
+  io.adapter(redisAdapter({ host: process.env.REDIS_HOST || 'redis', port: process.env.REDIS_PORT || 6379 }))
   app.set('io', io)
 }))
 
