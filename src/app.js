@@ -7,7 +7,7 @@ const feathers = require('@feathersjs/feathers')
 const configuration = require('@feathersjs/configuration')
 const express = require('@feathersjs/express')
 const socketio = require('@feathersjs/socketio')
-const redisAdapter = require('socket.io-redis')
+// const redisAdapter = require('socket.io-redis')
 
 const middleware = require('./middleware')
 const services = require('./services')
@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: true }))
 app.configure(express.rest())
 
 app.configure(socketio(io => {
-  io.adapter(redisAdapter({ host: process.env.REDIS_HOST || 'redis', port: process.env.REDIS_PORT || 6379 }))
+  // io.adapter(redisAdapter({ host: process.env.REDIS_HOST || 'redis', port: process.env.REDIS_PORT || 6379 }))
   app.set('io', io)
 }))
 
