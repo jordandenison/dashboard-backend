@@ -60,10 +60,28 @@ const restrictPromoteToAdminToAdmins = () =>
     return hook
   }
 
+const search = () =>
+  hook => {
+    if (hook.params.query.search) {
+      const search = { $like: `%${hook.params.query.search}%` }
+      hook.params.query = Object.assign({}, hook.params.query, {
+        $or: [
+          { email: search },
+          { firstName: search },
+          { lastName: search }
+        ]
+      })
+
+      delete hook.params.query.search
+    }
+
+    return hook
+  }
+
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],
-    find: [ filterFindForUsers() ],
+    find: [ filterFindForUsers(), search() ],
     get: [ restrictToAdminAndOwners() ],
     create: [ preventBulkOperations(), restrictToAdmin() ],
     update: [],

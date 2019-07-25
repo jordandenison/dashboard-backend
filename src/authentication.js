@@ -6,10 +6,10 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy
 const populateUser = () =>
   async hook => {
     const user = await hook.app.service('users').get(hook.params.payload.id)
-      hook.result.user = user
+    hook.result.user = user
 
-      return hook
-    }
+    return hook
+  }
 
 const oauthRedirectHandler = (app, url) => {
   const config = app.get('authentication')
@@ -43,7 +43,7 @@ class CustomVerifier extends oauth2.Verifier {
 
     const newAccount = await this.app.service('accounts').create({ name: email })
 
-    const newUser = await this.service.create({ email, accountId: newAccount.id })
+    const newUser = await this.service.create({ email, accountId: newAccount.id, role: 'admin' })
     const id = newUser[this.service.id]
     const newUserPayload = { id }
 
@@ -71,7 +71,7 @@ module.exports = function () {
       remove: [ authentication.hooks.authenticate('jwt') ]
     },
     after: {
-      create: [ populateUser() ] 
+      create: [ populateUser() ]
     }
   })
 }

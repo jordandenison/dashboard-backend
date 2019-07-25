@@ -95,7 +95,7 @@ test('user: GET /users fetches own user only and omits password', async t => {
   t.is(res.status, 200)
   t.is(res.body.data.length, 1)
   t.is(res.body.data[0].id, usersByRole.user.id)
-  t.falsy(res.body.data[0].password)    
+  t.falsy(res.body.data[0].password)
 })
 
 test('admin: GET /users/:id fetches own user and omits password', async t => {
@@ -128,7 +128,7 @@ test('user: GET /users/:id cannot fetch another user', async t => {
   const res = await request(server)
     .get(`/users/${usersByRole.admin.id}`)
     .set({ Authorization: accessTokensByRole.user })
-    
+
   t.is(res.status, 404)
 })
 

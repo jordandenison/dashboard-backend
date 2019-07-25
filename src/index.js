@@ -4,7 +4,6 @@ const logger = require('./logger')
 const app = require('./app')
 const realtime = require('lib/realtime')
 const { delay } = require('lib/util')
-const createInitialUsers = require('../scripts/create-initial-users')
 const port = app.get('port')
 
 process.on('unhandledRejection', (reason, p) =>
@@ -22,8 +21,6 @@ const listen = async () => {
   await waitForDatabaseConnection()
 
   realtime.init(app)
-
-  await createInitialUsers(app)
 
   const server = app.listen(port)
 
