@@ -28,7 +28,7 @@ const listen = async () => {
   const server = app.listen(port)
 
   server.on('listening', () => {
-    logger.info('Boilerplate started on http://%s:%d', app.get('host'), port)
+    logger.info('Dashboard started on http://%s:%d', app.get('host'), port)
   })
 }
 

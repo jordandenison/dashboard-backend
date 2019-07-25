@@ -1,4 +1,6 @@
 {
   "host": "dsahboard-backend.feathersjs.com",
-  "port": "PORT"
+  "port": "PORT",
+  "authentication": {
+    "secret": "JWT_SECRET",
 }

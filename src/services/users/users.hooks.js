@@ -1,5 +1,4 @@
 const { authenticate } = require('@feathersjs/authentication').hooks
-const { hashPassword, protect } = require('@feathersjs/authentication-local').hooks
 const { BadRequest, Forbidden } = require('@feathersjs/errors')
 
 const preventBulkOperations = () =>
@@ -66,14 +65,14 @@ module.exports = {
     all: [ authenticate('jwt') ],
     find: [ filterFindForUsers() ],
     get: [ restrictToAdminAndOwners() ],
-    create: [ preventBulkOperations(), restrictToAdmin(), hashPassword() ],
+    create: [ preventBulkOperations(), restrictToAdmin() ],
     update: [],
-    patch: [ preventBulkOperations(), restrictToAdminAndOwners(), restrictPromoteToAdminToAdmins(), hashPassword() ],
+    patch: [ preventBulkOperations(), restrictToAdminAndOwners(), restrictPromoteToAdminToAdmins() ],
     remove: [ preventBulkOperations(), restrictToAdminAndOwners() ]
   },
 
   after: {
-    all: [ protect('password') ],
+    all: [ ],
     find: [],
     get: [],
     create: [],

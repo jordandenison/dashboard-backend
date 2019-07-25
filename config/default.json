@@ -24,10 +24,12 @@
       "algorithm": "HS256",
       "expiresIn": "365d"
     },
-    "local": {
-      "entity": "user",
-      "usernameField": "email",
-      "passwordField": "password"
+    "google": {
+      "clientID": "GOOGLE_OAUTH_CLIENT_ID",
+      "clientSecret": "GOOGLE_OAUTH_CLIENT_SECRET",
+      "scope": ["https://www.googleapis.com/auth/userinfo.email"],
+      "callbackURL": "GOOGLE_OAUTH_CALLBACK_URL",
+      "successRedirect": "GOOGLE_OAUTH_SUCCESS_REDIRECT"
     }
   }
 }
