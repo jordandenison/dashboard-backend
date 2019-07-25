@@ -45,7 +45,7 @@ class CustomVerifier extends oauth2.Verifier {
 
     const newUser = await this.service.create({ email, accountId: newAccount.id })
     const id = newUser[this.service.id]
-    const newUserPayload = { [`${this.options.entity}Id`]: id }
+    const newUserPayload = { id }
 
     return done(null, entity, newUserPayload)
   }
